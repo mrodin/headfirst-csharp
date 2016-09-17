@@ -14,12 +14,20 @@ namespace ADayAtTheRaces
 
         public string GetDescription()
         {
-            throw new NotImplementedException();
+            string description = Bettor.Name + " bets " + Amount.ToString() + " on dog #" + Dog.ToString();
+            return description;
         }
 
         public int PayOut(int Winner)
         {
-            throw new NotImplementedException();
+            if (Winner == Dog)
+            {
+                return Amount;
+            }
+            else
+            {
+                return Amount * -1;
+            }
         }
     }
 }

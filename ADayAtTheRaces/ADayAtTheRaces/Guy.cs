@@ -10,30 +10,54 @@ namespace ADayAtTheRaces
     public class Guy
     {
         public string Name;
-        public Bet MyBet;
         public int Cash;
-
+        public Bet MyBet;
         public RadioButton MyRadioButton;
         public Label MyLabel;
 
         public void UpdateLabels()
         {
-            throw new NotImplementedException();
+            MyRadioButton.Text = Name + " has " + Cash.ToString() + " bucks";
+            if (MyBet != null && MyBet.Amount > 0)
+            {
+                MyLabel.Text = MyBet.GetDescription();
+            }
+            else
+            {
+                MyLabel.Text = Name + " hasn't placed a bet.";
+            }
+
         }
 
         public void ClearBet()
         {
-            throw new NotImplementedException();
+            MyBet.Amount = 0;
         }
 
         public bool PlaceBet(int BetAmount, int DogToWin)
         {
-            throw new NotImplementedException();
+            MyBet = new Bet
+            {
+                Amount = BetAmount,
+                Bettor = this,
+                Dog = DogToWin
+            };
+
+            if (Cash >= MyBet.Amount)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void Collect(int Winner)
         {
-            throw new NotImplementedException();
+            Cash += MyBet.PayOut(Winner);
+            ClearBet();
+            UpdateLabels();
         }
     }
 }

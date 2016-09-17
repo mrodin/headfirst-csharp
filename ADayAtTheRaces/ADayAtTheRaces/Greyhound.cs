@@ -17,12 +17,21 @@ namespace ADayAtTheRaces
 
         public bool Run()
         {
-            throw new NotImplementedException();
+            int numberOfSteps = Randomizer.Next(1, 5);
+            Location += numberOfSteps;
+            MyPictureBox.Left = StartingPosition + Location;
+
+            if (Location >= RacetrackLength)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void TakeStartingPosition()
         {
-            throw new NotImplementedException();
+            Location = 0;
+            MyPictureBox.Left = 9;
         }
     }
 }
